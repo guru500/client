@@ -1,5 +1,6 @@
 package com.guru.client.repository;
 
+import com.guru.client.exceptions.ClientServerException;
 import com.guru.client.model.Client;
 
 import javax.persistence.EntityManager;
@@ -18,7 +19,7 @@ public class ClientRepoCustomImpl implements ClientRepoCustom {
 
 
     @Override
-    public List<Client> filterClient(String firstName, String idNumber, String mobileNumber) {
+    public List<Client> filterClient(String firstName, String idNumber, String mobileNumber) throws ClientServerException {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Client> query = criteriaBuilder.createQuery(Client.class);
 
@@ -26,10 +27,10 @@ public class ClientRepoCustomImpl implements ClientRepoCustom {
         List<Predicate> predicates = new ArrayList<>();
 
         if (firstName != null) {
-            predicates.add(criteriaBuilder.equal(clientRoot.get("firstName"), firstName));
+            predicates.add(criteriaBuilder.equal(criteriaBuilder.lower(clientRoot.get("firstName")), firstName.toLowerCase()));
         }
         if (idNumber != null) {
-            predicates.add(criteriaBuilder.equal(clientRoot.get("idNumber"), idNumber));
+            predicates.add(criteriaBuilder.equal(criteriaBuilder.lower(clientRoot.get("idNumber")), idNumber.toLowerCase()));
         }
         if (mobileNumber != null) {
             predicates.add(criteriaBuilder.equal(clientRoot.get("mobileNumber"), mobileNumber));

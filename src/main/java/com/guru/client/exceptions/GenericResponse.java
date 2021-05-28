@@ -1,12 +1,9 @@
 package com.guru.client.exceptions;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.io.Serializable;
 
 public class GenericResponse<T> implements Serializable {
 
-    @JsonProperty(value = "isSuccessful")
     private final Boolean isSuccessful;
 
     private final String httpStatus;

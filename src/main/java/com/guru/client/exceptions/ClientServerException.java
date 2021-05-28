@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import java.util.Map;
 
 public class ClientServerException extends RuntimeException{
+
     private HttpStatus errorCode;
 
     private Map<String, String> errorMessages;
@@ -12,7 +13,6 @@ public class ClientServerException extends RuntimeException{
     public ClientServerException(Map<String, String> errorMessages, HttpStatus errorCode) {
         this.errorMessages = errorMessages;
         this.errorCode = errorCode;
-
     }
 
     public HttpStatus getErrorCode() {

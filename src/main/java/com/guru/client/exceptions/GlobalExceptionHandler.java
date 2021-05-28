@@ -28,6 +28,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     }
 
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<Object> handleNotFoundException(NotFoundException ex, WebRequest request) {
+
+        Response response = new Response(ex.getErrorMessages(), ex.getErrorCode().name());
+
+        GenericResponse<Response> genericResponse = new GenericResponse<>(false, ex.getErrorCode().name(), response);
+
+        return handleExceptionInternal(ex, genericResponse, new HttpHeaders(), ex.getErrorCode(), request);
+
+    }
+
     @ExceptionHandler(ClientServerException.class)
     public ResponseEntity<Object> handleClientServerException(ClientServerException ex, WebRequest request) {
         Map<String, String> error = new HashMap<>();
