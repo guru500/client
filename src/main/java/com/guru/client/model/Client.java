@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "client_details")
@@ -22,6 +23,7 @@ public class Client {
     @NotBlank(message = "Can not be blank.")
     private String lastName;
 
+    @Pattern(regexp="(^$|[0-9]{10})", message = "Mobile number not valid.")
     @NotBlank(message = "Can not be blank.")
     private String mobileNumber;
 

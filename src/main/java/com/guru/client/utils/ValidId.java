@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = ValidateId.class)
+@Constraint(validatedBy = IdValidator.class)
 public @interface ValidId {
 
     String message() default "";
@@ -17,4 +17,5 @@ public @interface ValidId {
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
+
 }

@@ -3,7 +3,7 @@ package com.guru.client.utils;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class ValidateId implements ConstraintValidator<ValidId, String> {
+public class IdValidator implements ConstraintValidator<ValidId, String> {
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
         boolean flag = false;
